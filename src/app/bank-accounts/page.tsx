@@ -3,7 +3,8 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import { CardAction } from "@/components/CardAction";
 
-import { getBankAccounts } from "../../queries/get-bank-accounts.query";
+import { getBankAccounts } from "@/queries/get-bank-accounts.query";
+import { addBankAccountToCookie } from "@/actions/add-bank-account-to-cookie.action";
 
 const BankAccounts = async () => {
 	const bankAccounts = await getBankAccounts();
@@ -15,7 +16,7 @@ const BankAccounts = async () => {
 			<Grid2 container spacing={2} mt={1}>
 				{bankAccounts.map(bankAccount => (
 					<Grid2 key={bankAccount.id} xs={12} sm={6} md={4}>
-						<CardAction>
+						<CardAction action={() => addBankAccountToCookie(bankAccount.id)}>
 							<Typography variant="h5" component="div">{bankAccount.owner_name}</Typography>
 
 							<Typography component="span">Conta: {bankAccount.account_number}</Typography>
