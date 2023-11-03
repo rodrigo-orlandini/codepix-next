@@ -16,30 +16,30 @@ import {
   Typography
 } from "@mui/material";
 
-import { Card } from "@/components/Card";  
+import { Card } from "@/components/Card";
 
-import { createPixKeyAction } from "@/actions/create-pix-key.action";
+import { createTransactionAction } from "@/actions/create-transaction.action";
 
-interface PartPixKeyFormProps {
+interface PartWithdrawFormProps {
   bankAccountId: string;
 };
 
-export const PartPixKeyForm = (props: PartPixKeyFormProps) => {
+export const PartWithdrawForm = (props: PartWithdrawFormProps) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  const createPixKeyActionWithBankAccountId = createPixKeyAction.bind(null, props.bankAccountId);
-
-  const onSubmit = async (formData: FormData) => {
-    await createPixKeyActionWithBankAccountId(formData);
-    setOpen(true);
-  };
+  const createTransactionActionWithBankAccountId = createTransactionAction.bind(null, props.bankAccountId);
 
   const handleClose = () => { setOpen(false); };
 
+  const onSubmit = async (formData: FormData) => {
+    await createTransactionActionWithBankAccountId(formData);
+    setOpen(true);
+  };
+
   return (
     <div>
-      <Typography variant="h5">Cadastrar chaves pix</Typography>
+      <Typography variant="h5">Realizar transferência</Typography>
 
       <Card>
         <form
@@ -49,25 +49,25 @@ export const PartPixKeyForm = (props: PartPixKeyFormProps) => {
           <FormControl sx={{ mt: 2 }} required>
             <FormLabel>Escolha um tipo de chave</FormLabel>
 
-            <RadioGroup name="kind">
+            <RadioGroup name="pix_key_kind">
               <FormControlLabel value="cpf" control={<Radio />} label="CPF" />
 
               <FormControlLabel value="email" control={<Radio />} label="E-mail" />
             </RadioGroup>
           </FormControl>
 
-          <TextField name="key" label="Digite sua chave pix" margin="normal" />
+          <TextField name="pix_key_key" label="Chave Pix" margin="normal" />
+          <TextField name="amount" label="Valor" margin="normal" type="number" />
+          <TextField name="description" label="Descrição" margin="normal" />
 
-          <Box display={"flex"} gap={1} mt={2}>
-            <Button type="submit" variant="contained">Cadastrar</Button>
+          <Box display="flex" gap={1} mt={2}>
+            <Button type="submit" variant="contained">Concluir</Button>
 
             <Button
               type="button"
               variant="contained"
               color="secondary"
-              onClick={() => {
-                router.push(`/bank-accounts/${props.bankAccountId}/dashboard`);
-              }}
+              onClick={() => router.push(`/bank-accounts/${props.bankAccountId}/dashboard`)}
             >
               Voltar
             </Button>
@@ -85,7 +85,7 @@ export const PartPixKeyForm = (props: PartPixKeyFormProps) => {
         }}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Chave pix cadastrada com sucesso!
+          Transferência realizada com sucesso!
         </Alert>
       </Snackbar>
     </div>
