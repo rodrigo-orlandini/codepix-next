@@ -1,9 +1,8 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { Box, Button, Chip } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 
 import { getBankAccount } from "@/queries/get-bank-account.query";
+import { deleteBankAccountFromCookie } from "@/actions/delete-bank-account-from-cookie.action";
 
 interface NavBarBankAccountProps {
   bankAccountId: string;
@@ -12,13 +11,6 @@ interface NavBarBankAccountProps {
 export const NavBarBankAccount = async (props: NavBarBankAccountProps) => {
   const bankAccount = await getBankAccount(props.bankAccountId);
   
-	const onSubmit = async () => {
-		"use server";
-          
-		cookies().delete("bankAccountId");
-    redirect("/");
-	};
-
 	return (
     <Box>
       <Chip
@@ -34,7 +26,7 @@ export const NavBarBankAccount = async (props: NavBarBankAccountProps) => {
         }
       />
 
-      <form action={onSubmit} style={{ all: "unset" }}>
+      <form action={deleteBankAccountFromCookie} style={{ all: "unset" }}>
         <Button color="inherit" type="submit">Sair</Button>
       </form>
     </Box>
