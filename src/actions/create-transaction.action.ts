@@ -9,7 +9,7 @@ export const createTransactionAction = async (bankAccountId: string, formData: F
   const amount = formData.get("amount");
   const description = formData.get("description");
 
-  const response = await fetch(`http://localhost:3000/bank-accounts/${bankAccountId}/transactions`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API_URL}/bank-accounts/${bankAccountId}/transactions`, {
 		method: "POST",
 		body: JSON.stringify({
 			pix_key_kind: pixKeyKind,
