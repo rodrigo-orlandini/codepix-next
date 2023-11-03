@@ -1,17 +1,9 @@
-import { BankAccount } from "@/models/bank-account";
-
 import { Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import { CardAction } from "@/components/CardAction";
 
-export const getBankAccounts = async (): Promise<BankAccount[]> => {
-	const response = await fetch("http://localhost:3000/bank-accounts", {
-		next: { revalidate: 10 }	
-	});
-
-	return response.json();
-};
+import { getBankAccounts } from "../queries/get-bank-accounts.query";
 
 const BankAccounts = async () => {
 	const bankAccounts = await getBankAccounts();
