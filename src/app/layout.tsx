@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { ThemeRegistry } from "../components/ThemeRegistry/ThemeRegistry";
 import { Box } from "@mui/material";
+
+import { ThemeRegistry } from "@/components/ThemeRegistry/ThemeRegistry";
+import { NavBar } from "@/components/NavBar/NavBar";
 
 export const metadata: Metadata = {
   title: "Code Pix",
@@ -15,6 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+				<NavBar/>
+
         <ThemeRegistry>
           <Box
             component="main"
