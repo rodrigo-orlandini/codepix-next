@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { green, red } from "@mui/material/colors";
 import { DataGrid, GridColDef } from "@/components/mui";
 
@@ -31,9 +32,26 @@ const columns: GridColDef[] = [
 
 interface PartLatestTransactionsProps {
   transactions: Transaction[];
-  bankAccountId?: string;
+	bankAccountId: string;
+  page?: number;
+	take?: number;
 };
 
-export const PartLatestTransactions = ({ transactions, bankAccountId }: PartLatestTransactionsProps) => {
-  return <DataGrid rows={transactions} columns={columns} />;
+export const PartLatestTransactions = ({ transactions, bankAccountId, page, take }: PartLatestTransactionsProps) => {
+	const router = useRouter();
+
+  return <DataGrid 
+		rows={transactions} columns={columns} 
+		initialState={{
+			pagination: {
+				paginationModel: { page, pageSize: take }
+			}
+		}}
+		pageSizeOptions={[10, 20]}
+		onPaginationModelChange={({ page, pageSize }) => {
+			const paginatedRoute = `/bank-accounts/${bankAccountId}/dashboard?page=${page}&take=${pageSize}`;
+
+			router.push(paginatedRoute);
+		}}
+	/>;
 };

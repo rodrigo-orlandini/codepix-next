@@ -11,7 +11,20 @@ interface BankAccountDashboardParams {
 	bankAccountId: string;
 }
 
-const BankAccountDashboard = async ({ params }: { params: BankAccountDashboardParams }) => {
+interface BankAccountDashboardSearchParams {
+	page: string;
+	take: string;
+}
+
+const BankAccountDashboard = async ({ 
+	params, searchParams 
+}: { 
+	params: BankAccountDashboardParams,
+	searchParams: BankAccountDashboardSearchParams
+}) => {
+	const page = parseInt(searchParams.page) || 1;
+	const take = parseInt(searchParams.take) || 10;
+
 	const transactions = await getTransactions(params.bankAccountId);
 
 	return (
