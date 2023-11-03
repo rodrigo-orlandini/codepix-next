@@ -32,7 +32,7 @@ const theme = createTheme({
       styleOverrides: (themeParam) => ({
         body: {
           backgroundColor: "#f5f5f5",
-          background: "url(\"/img/back.png\") repeat right top",
+          background: "url(\"/image/background.png\") repeat right top",
           WebkitBackgroundSize: "cover",
           MozBackgroundSize: "cover",
           OBackgroundSize: "cover",
