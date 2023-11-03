@@ -3,7 +3,7 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import { CardAction } from "@/components/CardAction";
 
-import { getBankAccounts } from "../queries/get-bank-accounts.query";
+import { getBankAccounts } from "../../queries/get-bank-accounts.query";
 
 const BankAccounts = async () => {
 	const bankAccounts = await getBankAccounts();

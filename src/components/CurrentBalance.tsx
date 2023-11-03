@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { Box, Typography } from "@mui/material";
 
-import { getBankAccount } from "@/app/queries/get-bank-account.query";
+import { getBankAccount } from "@/queries/get-bank-account.query";
 
 interface CurrentBalanceProps {
 	bankAccountId: string;

@@ -5,7 +5,7 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { CurrentBalance } from "@/components/CurrentBalance";
 import { CardAction } from "@/components/CardAction";
 import { PartLatestTransactions } from "./PartLatestTransactions";
-import { getTransactions } from "@/app/queries/get-transactions.query";
+import { getTransactions } from "@/queries/get-transactions.query";
 
 interface BankAccountDashboardParams {
 	bankAccountId: string;
