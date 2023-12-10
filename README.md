@@ -5,8 +5,8 @@ A bank interface integrated with bank backend API.
 ### Techonolgies
 
 [![Next](.markdown/next.png "Next")](https://nextjs.org/)
-[![Typescript](.markdown/typescript.png "Typescript")](https://www.typescriptlang.org/)
-[![TailwindCSS](.markdown/tailwindcss.png "TailwindCSS")](https://tailwindcss.com/)
+[![Docker](.markdown/docker.png "Docker")](https://docs.docker.com/)
+[![TailwindCSS](.markdown/tailwind.png "TailwindCSS")](https://tailwindcss.com/)
 
 ---
 
